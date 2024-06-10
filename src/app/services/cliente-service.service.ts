@@ -23,22 +23,16 @@ export class ClienteServiceService {
     });
   }
 
-  searchClient(): void {
-
-  }
-
-
   guardarCliente(
     nombre: string,
     direccion: string,
     telefono: string,
   ) {
-
     this.http
       .post(this.url + '/api/clientes', {
         nombre: nombre,
         direccion: direccion,
-        puesto: telefono
+        telefono: telefono
       })
       .subscribe((respuesta: any) => {
         console.log(respuesta.msg);
@@ -68,12 +62,11 @@ export class ClienteServiceService {
     direccionEdit: string,
     telefonoEdit: string,
   ) {
-    console.log(this.url + 'api/clieantes/actualizar/' + idSelect)
     this.http
       .put(this.url + '/api/clientes/actualizar/' + idSelect, {
         nombre: nombreEdit,
         direccion: direccionEdit,
-        puesto: telefonoEdit
+        telefono: telefonoEdit
       })
       .subscribe((respuesta: any) => {
         console.log(respuesta.msg);
@@ -136,8 +129,6 @@ export class ClienteServiceService {
           });
       }
     });
-
-
   }
 
 }

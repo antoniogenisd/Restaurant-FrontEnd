@@ -3,6 +3,7 @@ import { ClienteServiceService } from '../../app/services/cliente-service.servic
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -37,12 +38,6 @@ export class ListadoClientesComponent {
   @ViewChild('telefonoEdit')
   referenciaETelefono!: ElementRef;
 
-  @ViewChild('closeModal')
-  closeModal!: ElementRef;
-
-  @ViewChild('search')
-  searchClient!: ElementRef;
-
   constructor(private cs: ClienteServiceService) {
     cs.obtenerListaClientes();
   }
@@ -70,12 +65,21 @@ export class ListadoClientesComponent {
     const nombre = this.referenciaNombre.nativeElement.value;
     const direccion = this.referenciaDireccion.nativeElement.value;
     const telefono = this.referenciaTelefono.nativeElement.value;
-    console.log(this.guardarCliente)
-    this.cs.guardarCliente(
-      nombre,
-      direccion,
-      telefono
-    );
+    if (!nombre || !direccion || !telefono) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Llena todos los campos!",
+      });
+      return;
+    } else {
+      this.cs.guardarCliente(
+        nombre,
+        direccion,
+        telefono
+      );
+    }
+
   }
 
   editarCliente() {
@@ -90,9 +94,5 @@ export class ListadoClientesComponent {
     );
   }
 
-  searchCliente() {
-    const searchCliente = this.searchClient.nativeElement.value;
-    this.cs.obtenerListaClientes();
-  }
 
 }

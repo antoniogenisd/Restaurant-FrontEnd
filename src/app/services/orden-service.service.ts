@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ClientePlatillo } from '../../interfaces/cliente-platillo';
-import { Observable } from 'rxjs';
 import { EmpleadoComponent } from '../../pages/empleado/empleado.component';
 
 @Injectable({
@@ -25,6 +24,4 @@ export class OrdenServiceService {
       this.listaOrdenes = respuesta;
     });
   }
-
-
 }

@@ -36,10 +36,20 @@
             {{ e.nombre }} ( {{ e.id }})
           </h5>
           <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-            Direccion: {{ e.direccion }}
+            <span class="text-blue-700 dark:text-blue-400">Direccion:</span>
+            {{ e.direccion }}
           </p>
           <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-            Telefono: {{ e.telefono }}
+            <span class="text-blue-700 dark:text-blue-400">Telefono:</span>
+            {{ e.telefono }}
+          </p>
+          <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+            <span class="text-blue-700 dark:text-blue-400">Puesto:</span>
+            {{ e.puesto }}
+          </p>
+          <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+            <span class="text-blue-700 dark:text-blue-400">Sueldo:</span>
+            ${{ e.sueldo }}
           </p>
           <button
             data-modal-target="editarEmpleado"

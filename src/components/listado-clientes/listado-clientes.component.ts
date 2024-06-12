@@ -71,7 +71,6 @@ export class ListadoClientesComponent {
         title: "Oops...",
         text: "Llena todos los campos!",
       });
-      return;
     } else {
       this.cs.guardarCliente(
         nombre,
@@ -86,12 +85,20 @@ export class ListadoClientesComponent {
     const nombreEdit = this.referenciaENombre.nativeElement.value;
     const direccionEdit = this.referenciaEDireccion.nativeElement.value;
     const telefonoEdit = this.referenciaETelefono.nativeElement.value;
-    this.cs.editarCliente(
-      this.idSelect,
-      nombreEdit,
-      direccionEdit,
-      telefonoEdit
-    );
+    if (!nombreEdit || !direccionEdit || !telefonoEdit) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Llena todos los campos!",
+      });
+    } else {
+      this.cs.editarCliente(
+        this.idSelect,
+        nombreEdit,
+        direccionEdit,
+        telefonoEdit
+      );
+    }
   }
 
 

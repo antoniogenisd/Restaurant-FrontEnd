@@ -2,6 +2,7 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { EmpleadoServicesService } from '../../app/services/empleado-services.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-listado-empleados',
@@ -69,14 +70,23 @@ export class ListadoEmpleadosComponent {
     const telefono = this.referenciaTelefono.nativeElement.value;
     const puesto = this.referenciaPuesto.nativeElement.value;
     const sueldo = this.referenciaSueldo.nativeElement.value;
-    console.log(this.guardarEmpleado)
-    this.es.guardarEmpleado(
-      nombre,
-      direccion,
-      telefono,
-      puesto,
-      sueldo
-    );
+    if (!nombre || !direccion || !telefono || !puesto || !sueldo) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Llena todos los campos!",
+      });
+    } else {
+      this.es.guardarEmpleado(
+        nombre,
+        direccion,
+        telefono,
+        puesto,
+        sueldo
+      );
+    }
+
+
   }
 
   editarEmpleado() {
@@ -85,14 +95,23 @@ export class ListadoEmpleadosComponent {
     const telefono = this.referenciaETelefono.nativeElement.value;
     const puesto = this.referenciaEPuesto.nativeElement.value;
     const sueldo = this.referenciaESueldo.nativeElement.value;
-    this.es.editarEmpleado(
-      this.idSelect,
-      nombre,
-      direccion,
-      telefono,
-      puesto,
-      sueldo
-    );
+    if (!nombre || !direccion || !telefono || !puesto || !sueldo) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Llena todos los campos!",
+      });
+    } else {
+      this.es.editarEmpleado(
+        this.idSelect,
+        nombre,
+        direccion,
+        telefono,
+        puesto,
+        sueldo
+      );
+    }
+
   }
 
   getEliminarEmpleado(id: number) {

@@ -42,10 +42,13 @@
             {{ ps.nombre }} ( {{ ps.id }})
           </h5>
           <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-            Descripcion: {{ ps.descripcion }}
+            <span class="text-blue-700 dark:text-blue-400">Descripcion:</span>
+            {{ ps.descripcion }}
           </p>
           <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-            Precio: ${{ ps.precio }}
+            <span class="text-blue-700 dark:text-blue-400">Precio:</span> ${{
+              ps.precio
+            }}
           </p>
           <button
             data-modal-target="editarPlatillo"

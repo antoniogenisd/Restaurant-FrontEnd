@@ -1,6 +1,7 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { PlatilloServicesService } from '../../app/services/platillo-services.service';
 import { CommonModule } from '@angular/common';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-listado-platillos',
@@ -50,24 +51,41 @@ export class ListadoPlatillosComponent {
     const nombre = this.referenciaNombre.nativeElement.value;
     const descripcion = this.referenciaDescripcion.nativeElement.value;
     const precio = this.referenciaPrecio.nativeElement.value;
-    console.log(this.guardarPlatilo)
-    this.ps.guardarPlatillo(
-      nombre,
-      descripcion,
-      precio
-    );
+    if (!nombre || !descripcion || !precio) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Llena todos los campos!",
+      });
+    } else {
+      this.ps.guardarPlatillo(
+        nombre,
+        descripcion,
+        precio
+      );
+    }
+
+
   }
 
   editarPlatillo() {
     const nombreEdit = this.referenciaENombre.nativeElement.value;
     const descripcionEdit = this.referenciaEDescripcion.nativeElement.value;
     const precioEdit = this.referenciaEPrecio.nativeElement.value;
-    this.ps.editarPlatillo(
-      this.idSelect,
-      nombreEdit,
-      descripcionEdit,
-      precioEdit
-    );
+    if (!nombreEdit || !descripcionEdit || !precioEdit) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Llena todos los campos!",
+      });
+    } else {
+      this.ps.editarPlatillo(
+        this.idSelect,
+        nombreEdit,
+        descripcionEdit,
+        precioEdit
+      );
+    }
   }
 
   getElimPlatillo(id: number) {
